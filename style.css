@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    background-image:url('coffeeb.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('coffeeb.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(3px); /* Adjust the blur intensity as needed */
+    z-index: -1; /* Ensure the pseudo-element stays behind other content */
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.heading {
+    margin-top: 2rem;
+    font-size: 3rem;
+}
+
+.main-content {
+    max-width: 80%;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+h1{
+    font-size: 700%;
+    font-family: 'Rubik', sans-serif;
+    color: #b4eaac;
+}
+h2,h3{
+    font-family: 'Kanit', sans-serif;
+    color: #f5f6f7;
+}
+.pass{
+    color: #e6e6fa;
+    font-size: 200%;
+    margin-top: 15px;
+}
+#cost{
+    color: black;
+    background-color: #d0d5d2d1;
+    background-size: 150px;
+    width:250px;
+    margin-left: 30rem;
+    border-radius: 10px;
+}
+#star{
+    color: white;
+}
+.entry{
+    font-size: 175%;
+}
+label{
+    font-size: 20px;
+}
+.pay_button {
+    margin-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 4rem;
+    border-radius: 10px;
+    background-color: #26970c;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+.pay_button:hover{
+    background-color: #32c012;
+    color: black;
+}
+
+.keypad-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    max-width: 300px; 
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+
+    /* margin-left: 5rem; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+}
+
+#keypad button {
+    padding: 15px 20px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#keypad button:hover {
+    background-color: #e0e0e0;
+}
+
+
+button {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    
+}
+#payment_done{
+    color: #ffd700;
+}
+#gif {
+    width: 25rem;
+}
+
+.loader-container {
+    position: relative;
+} 
+
+ .loader {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #f3f3f3;
+    
+    border-top: 8px solid #3498db;
+
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .heading {
+        font-size: 2.5rem;
+    }
+    /* Add more responsive adjustments as needed */
+}

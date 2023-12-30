@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Vending Machine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="heading">Tea & Coffee Vending Machine</h1>
+        <div class="main-content">
+            <div class="entry" id="entry">
+                <h3>Choose Type of Tea</h3>
+                <div class="radio-group">
+                    <input id="tea" type="radio" name="choice" value="tea">
+                    <label>Tea</label><br>
+
+                    <input id="coffee" type="radio" name="choice" value="coffee">
+                    <label>Coffee</label><br>
+
+                    <input id="black-tea" type="radio" name="choice" value="black_tea">
+                    <label>Black Tea</label>
+                </div>
+                <br>
+                <h3>Enter Amount of Cups You Want</h3>
+                <input type="radio" name="tea_number" value="1" id="html">
+                <label for="html">1</label><br>
+
+                <input type="radio" name="tea_number" value="2" id="css">
+                <label for="css">2</label><br>
+
+                <input type="radio" name="tea_number" value="3" id="javascript">
+                <label for="javascript">3</label>
+                <br>
+                <button onclick="pay()" class="pay_button">pay</button>
+            </div>
+            <div class="password" id="password" style="display: none;">
+                <h2 id="cost"></h2>
+                <div class="pass">
+                    <p><b>Enter Your Password</b></p>
+                </div>
+
+                <h3 id="star"></h3>
+                <br>
+                <div class="keypad-container">
+                    <div id="keypad">
+                        <button onclick="appendToPassword('1')">1</button>
+                        <button onclick="appendToPassword('2')">2</button>
+                        <button onclick="appendToPassword('3')">3</button>
+                        <button onclick="appendToPassword('4')">4</button>
+                        <button onclick="appendToPassword('5')">5</button>
+                        <button onclick="appendToPassword('6')">6</button>
+                        <button onclick="appendToPassword('7')">7</button>
+                        <button onclick="appendToPassword('8')">8</button>
+                        <button onclick="appendToPassword('9')">9</button>
+                        <button onclick="appendToPassword('0')" style="visibility:hidden">0</button>
+                        <button onclick="appendToPassword('0')">0</button>
+                    </div>
+                </div>
+                <br>
+                <button onclick="startLoading()" class="pay_button">Pay</button>
+            </div>
+            <h2 id="payment_done"></h2>
+            <img id="gif" src="">
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        function pay() {
+
+            $('#entry').hide();
+            $('#password').show();
+            var type = $('input[name="choice"]:checked').val();
+            var amount = $('input[name="tea_number"]:checked').val();
+            if ((type === "tea" || type === "coffee" || type === "black_tea") && (amount === "1" || amount === "2" || amount === "3")) {
+                var total = 0;
+                if (type === "tea") {
+                    total = 5 * parseInt(amount);
+                }
+                if (type === "coffee") {
+                    total = 10 * parseInt(amount);
+                }
+                if (type === "black_tea") {
+                    total = 15 * parseInt(amount);
+                }
+                $('#cost').text("Your Cost is " + total);
+            } else {
+                alert("please select proper choice")
+                location.reload();
+            }
+        }
+    </script>
+    <script>
+        var passwordInput = "";
+
+        function appendToPassword(digit) {
+            $('#star').append('*');
+            passwordInput = passwordInput + digit;
+        }
+
+        function startLoading() {
+            if (passwordInput === "2001") {
+                $('#payment_done').text("Wait for a while");
+                $('#password').hide();
+                var loader = document.createElement('div');
+                loader.className = 'loader';
+                document.body.appendChild(loader);
+                setTimeout(function () {
+                    loader.remove();
+                    $('#payment_done').text("Done payment");
+                }, 2000);
+                setTimeout(function () {
+                    $('#gif').attr('src', 'done.gif')
+                }, 2100);
+                setTimeout(function () {
+                    var url = "http://" + "192.168.211.126" + "/" + "0on";
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.open("GET", url, true);
+                    xhttp.send();
+                    console.log(url);
+                }, 3000);
+                setTimeout(function () {
+                    location.reload();
+                }, 4000);
+            } else {
+                alert("wrong password");
+                passwordInput = "";
+                $('#star').text("");
+            }
+        }
+    </script>
+</body>
+</html>
